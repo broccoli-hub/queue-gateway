@@ -1,0 +1,15 @@
+service: queue-gateway
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  deploymentMethod: direct
+
+functions:
+  api:
+    handler: ./src/index.handler
+    events:
+      - httpApi:
+          path: /
+          method: get

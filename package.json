@@ -1,0 +1,13 @@
+{
+  "name": "queue-gateway",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo test",
+    "deploy": "sls deploy"
+  },
+  "devDependencies": {
+    "serverless": "^3.36.0"
+  }
+}
