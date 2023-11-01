@@ -3,13 +3,27 @@ frameworkVersion: '3'
 
 provider:
   name: aws
+  region: us-east-1
   runtime: nodejs18.x
   deploymentMethod: direct
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "iot:Publish"
+      Resource: "arn:aws:iot:${opt:region, self:provider.region}:*:topic/*"
+  environment:
+    IOT_ENDPOINT: a24ojcian4h8tx-ats.iot.us-east-1.amazonaws.com
 
 functions:
-  api:
+  live:
     handler: ./src/index.handler
     events:
       - httpApi:
           path: /
           method: get
+  publish:
+    handler: ./src/publisher.handler
+    events:
+      - httpApi:
+        path: /publish
+        method: post
